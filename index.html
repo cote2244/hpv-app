@@ -50,7 +50,7 @@
             }
 
             try {
-                const response = await fetch(`http://127.0.0.1:8000/check-hpv/${code}`);
+                const response = await fetch(`https://hpv-app.onrender.com/check-hpv/${code}`);
                 
                 if(!response.ok) {
                     alert("ไม่พบรหัสประเมินนี้ในระบบ");
