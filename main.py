@@ -14,7 +14,7 @@ app.add_middleware(
 # --- 1. หมวดข้อมูล: ความเสี่ยงต่ำ ---
 data_negative = {
     "result_type": "Negative",
-    "risk_level": "🟢 ต่ำ", 
+    "risk_level": "✅ ต่ำ", 
     "color_theme": "#28a745", 
     "message": "ผลตรวจไม่พบเชื้อไวรัส HPV สายพันธุ์เสี่ยงสูง บริเวณปากมดลูกอยู่ในเกณฑ์ปกติ มีความเสี่ยงต่ำมากในการเกิดมะเร็งปากมดลูกในปัจจุบัน", 
     "advice": [
@@ -28,7 +28,7 @@ data_negative = {
 # --- 2. หมวดข้อมูล: ความเสี่ยงสูงมาก (HPV 16 / 18) ---
 data_high_risk = {
     "result_type": "Positive HPV 16 หรือ 18",
-    "risk_level": "🔴 สูงมาก",
+    "risk_level": "❗ สูงมาก",
     "color_theme": "#dc3545",
     "message": "ผลตรวจพบเชื้อ HPV สายพันธุ์ 16 หรือ 18 ซึ่งเป็นกลุ่มที่มีความเสี่ยงสูงที่สุด มีโอกาสพัฒนากลายเป็นมะเร็งปากมดลูก \"การพบเชื้อไม่ได้แปลว่าเป็นมะเร็ง\" แต่หมายถึงต้องได้รับการตรวจเช็คช่องคลอดและปากมดลูกอย่างละเอียดเพิ่มเติมด้วยการตรวจส่องกล้องขยายช่องคลอดและตัดชิ้นเนื้อส่งตรวจ (Colposcopy / Biopsy) ที่โรงพยาบาลตามสิทธิการรักษา กรุณามาพบแพทย์ค่ะ",
     "advice": [
@@ -40,7 +40,7 @@ data_high_risk = {
 # --- 3. หมวดข้อมูล: สายพันธุ์เสี่ยงสูงอื่นๆ (Non 16/18) ---
 data_other_risk = {
     "result_type": "Positive Non 16/18",
-    "risk_level": "🟡 สายพันธุ์เสี่ยงอื่นๆ",
+    "risk_level": "⚠️ สายพันธุ์เสี่ยงอื่นๆ",
     "color_theme": "#ffc107",
     "message": "ตรวจพบเชื้อ HPV สายพันธุ์เสี่ยงสูงกลุ่มอื่นๆ ซึ่งร่างกายของคนส่วนใหญ่สามารถกำจัดเชื้อชนิดนี้ออกไปได้เองตามธรรมชาติ แต่จำเป็นต้องตรวจเซลล์ปากมดลูกเพิ่มเติม (LBC) เพื่อประเมินแนวทางการรักษาต่อไป",
     "advice": [
@@ -51,18 +51,14 @@ data_other_risk = {
 }
 
 # --- ระบบจับคู่คำค้นหา (Keyword Mapping) ---
-# รองรับการพิมพ์ตัวพิมพ์เล็ก-ใหญ่ และการเว้นวรรค
 mock_db = {
-    # กลุ่ม Negative
     "NEGATIVE": data_negative,
     
-    # กลุ่ม HPV 16 และ 18
     "HPV 16": data_high_risk,
     "HPV16": data_high_risk,
     "HPV 18": data_high_risk,
     "HPV18": data_high_risk,
     
-    # กลุ่ม Positive Non 16/18 และสายพันธุ์อื่นๆ
     "POSITIVE NON 16/18": data_other_risk,
     "NON 16/18": data_other_risk,
     "HPV 31": data_other_risk,
@@ -79,7 +75,6 @@ mock_db = {
 
 @app.get("/check-hpv/{code}")
 async def check_hpv_result(code: str):
-    # คลีนคำค้นหา: ลบช่องว่างหัวท้ายและแปลงเป็นตัวพิมพ์ใหญ่ทั้งหมด
     search_term = code.strip().upper()
     result = mock_db.get(search_term)
     
