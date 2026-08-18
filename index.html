@@ -7,24 +7,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Sarabun', sans-serif; background-color: #fce4ec; margin: 0; padding: 0; color: #333; }
-        .container { max-width: 450px; margin: 0 auto; background: white; min-height: 100vh; box-shadow: 0 0 15px rgba(0,0,0,0.1); padding-bottom: 20px; }
         
-        /* ปรับโลโก้ให้เป็นวงกลม เล็กลง และชิดขอบบนมากขึ้น เพื่อให้เห็นคำถามด้านล่าง */
+        /* ปรับปรุงโครงสร้างกรอบขาวใหม่ให้เป็นแบบ "การ์ดแอปพลิเคชัน" */
+        .container { 
+            width: 92%; /* ให้เหลือขอบสีชมพูด้านข้างซ้าย-ขวาบนมือถือ */
+            max-width: 450px; 
+            margin: 40px auto; /* ขยับกรอบขาวให้ลอยลงมาจากขอบจอบน */
+            background: white; 
+            border-radius: 20px; /* ทำให้มุมกรอบขาวโค้งมนสวยงาม */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* เพิ่มเงาให้ดูมีมิติ */
+            padding-top: 30px; /* ดันโลโก้ลงมาไม่ให้ชิดขอบบน */
+            padding-bottom: 30px; /* ตัดความยาวด้านล่างให้พอดีกับเนื้อหา */
+        }
+        
         .banner { 
-            width: 110px; 
-            height: 110px; 
+            width: 120px; 
+            height: 120px; 
             object-fit: cover; 
-            border-radius: 50%; /* คำสั่งทำรูปเป็นวงกลม */
+            border-radius: 50%; 
             display: block; 
-            margin: 15px auto 10px auto; 
+            margin: 0 auto 15px auto; 
             border: 3px solid #f8bbd0; 
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             background-color: white;
         }
 
-        .content { padding: 10px 20px; }
+        .content { padding: 0 20px; }
         h2 { color: #d81b60; text-align: center; margin-top: 0; margin-bottom: 15px; font-weight: 600; font-size: 22px; }
-        .input-group { margin-bottom: 12px; }
+        .input-group { margin-bottom: 15px; }
         input[type="text"] { width: 100%; padding: 12px; border: 2px solid #f8bbd0; border-radius: 10px; font-size: 16px; box-sizing: border-box; text-align: center; outline: none; transition: 0.3s; }
         input[type="text"]:focus { border-color: #d81b60; }
         button { width: 100%; padding: 12px; background-color: #d81b60; color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; }
@@ -39,7 +49,6 @@
         ul { padding-left: 20px; margin-top: 5px; }
         li { margin-bottom: 5px; line-height: 1.4; color: #444; font-size: 15px;}
 
-        /* สไตล์ปุ่ม LINE */
         .line-btn {
             display: block; 
             width: 100%; 
@@ -58,22 +67,22 @@
         }
         .line-btn:hover { background-color: #009900; }
 
-        .faq-section { margin-top: 25px; background-color: #fff9fa; padding: 12px; border-radius: 10px; border: 1px solid #f8bbd0; }
+        .faq-section { margin-top: 25px; background-color: #fff9fa; padding: 15px; border-radius: 10px; border: 1px solid #f8bbd0; }
         .faq-section h3 { color: #d81b60; font-size: 16px; margin-top: 0; text-align: center; }
         details { margin-bottom: 8px; background: white; border-radius: 8px; border: 1px solid #fce4ec; }
-        summary { font-weight: 600; padding: 10px; cursor: pointer; color: #d81b60; outline: none; font-size: 15px; }
-        details p { padding: 0 10px 10px 10px; margin: 0; font-size: 14px; color: #555; }
+        summary { font-weight: 600; padding: 12px; cursor: pointer; color: #d81b60; outline: none; font-size: 15px; }
+        details p { padding: 0 12px 12px 12px; margin: 0; font-size: 14px; color: #555; }
     </style>
 </head>
 <body>
     <div class="container">
         <!-- โลโก้วงกลม -->
-        <img src="HPV.jpg" alt="โลโก้โรงพยาบาล" class="banner">
+        <img src="image_7dd7fc.jpg" alt="โลโก้โรงพยาบาล" class="banner">
         
         <div class="content">
             <h2>ระบบประเมินความเสี่ยง HPV</h2>
             <div class="input-group">
-                <input type="text" id="patientCode" placeholder="กรอกผลตรวจ เช่น Negative, HPV 16">
+                <input type="text" id="patientCode" placeholder="กรอกผลตรวจ">
             </div>
             <button onclick="checkResult()" id="submitBtn">ตรวจสอบผลการตรวจ</button>
 
@@ -87,7 +96,7 @@
                 <p><strong>คำแนะนำในการดูแล:</strong></p>
                 <ul id="adviceList"></ul>
 
-                <!-- ปุ่มติดต่อ LINE OA -->
+                <!-- ปุ่มติดต่อ LINE OA (อย่าลืมแก้ลิงก์ด้านหลัง href นะครับ) -->
                 <a href="https://lin.ee/your_line_id" target="_blank" class="line-btn">
                     💬 สอบถามแพทย์/แอดมินเพิ่มเติม
                 </a>
